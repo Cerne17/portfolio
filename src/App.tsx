@@ -197,7 +197,7 @@ function App() {
                 <h3 className="text-xl font-semibold text-slate-700 mb-6">
                   Send Me a Message
                 </h3>
-                <form action="#" method="POST">
+                <form action="https://formspree.io/f/mqaqdkgw" method="POST">
                   {" "}
                   {/* Replace action with your form endpoint */}
                   <div className="mb-5">
