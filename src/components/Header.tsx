@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logoSrc from "../assets/logo.png"; // Adjust the path as necessary
+import logoSrc from "../assets/logo.svg"; // Adjust the path as necessary
 
 const Header: React.FC = () => {
   const [isVisible, setIsVisible] = React.useState(false);
