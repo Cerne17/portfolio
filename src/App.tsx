@@ -6,21 +6,11 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ProjectCard from "./components/ProjectCard";
 
-import BlogListPage from "./components/BlogListPage";
-import BlogPostPage from "./components/BlogPostPage";
+import BlogListPage from "./pages/BlogListPage";
+import BlogPostPage from "./pages/BlogPostPage";
 import HomePage from "./pages/HomePage";
 
 function App() {
-  // const [isH1Visible, setIsH1Visible] = useState(false);
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setIsH1Visible(true);
-  //   }, 300); // Delay for 1 second before showing the h1 element
-
-  //   return () => clearTimeout(timer); // Cleanup the timer on unmount
-  // }, []);
-
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 text-gray-800">
       <Header />
