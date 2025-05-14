@@ -1,4 +1,5 @@
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const navLinks = [
@@ -31,6 +32,17 @@ const Navbar: React.FC = () => {
               >
                 {link.label}
               </a>
+              <RouterLink
+                to="/blog"
+                className={`
+                  px-3 py-2 rounded-md text-sm font-medium
+                  hover:text-blue-400 hover:bg-slate-700
+                  transform transition-all duration-300 ease-in-out
+                  hover:scale-110 hover:-translate-y-0.5
+                `}
+              >
+                Blog
+              </RouterLink>
             </li>
           ))}
         </ul>
