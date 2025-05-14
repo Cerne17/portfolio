@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProjectCard from "../components/ProjectCard";
+import { useLocation } from "react-router-dom";
 import type { Project } from "../types/Project";
 
 const sampleProjects: Project[] = [
@@ -38,6 +39,7 @@ const sampleProjects: Project[] = [
 ];
 
 const HomePage: React.FC = () => {
+  const location = useLocation();
   const [isH1Visible, setIsH1Visible] = useState(false);
 
   useEffect(() => {
@@ -47,6 +49,23 @@ const HomePage: React.FC = () => {
 
     return () => clearTimeout(timer); // Cleanup the timer on unmount
   }, []);
+
+  // Effect to scroll to hash element
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        // Wait a brief moment for the DOM to stabilize after navigation/re-render
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100); // Adjust delay as needed, 0 might also work sometimes
+      }
+    } else {
+      // Optional: Scroll to top if no hash
+      // window.scrollTo(0, 0);
+    }
+  }, [location]); // Re-run effect when location changes (including hash)
 
   return (
     <div className="container mx-auto p-6 md:p-8">
