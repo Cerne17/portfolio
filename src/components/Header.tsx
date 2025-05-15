@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link as RouterLink } from "react-router-dom"; // Import Link
 import logoSrc from "../assets/logo.svg"; // Adjust the path as necessary
 
 const Header: React.FC = () => {
@@ -26,8 +27,8 @@ const Header: React.FC = () => {
       >
         {" "}
         {/* You could put a logo here if you have one */}
-        <a
-          href="#home"
+        <RouterLink
+          to="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <img src={logoSrc} alt="My Portfolio Logo" className="h-10 w-auto" />
@@ -36,7 +37,7 @@ const Header: React.FC = () => {
             {/* Keep text vertically centered */}
             Miguel Cerne
           </span>
-        </a>
+        </RouterLink>
         {/* Or your brand/site name */}
         {/* Optional: Add a tagline or other small info on the right if needed */}
         <p className="text-sm">Full-Stack Developer & ML Enthusiast</p>
