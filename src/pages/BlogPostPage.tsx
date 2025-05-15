@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouterLink } from "react-router-dom";
 import type { Post } from "../types/Post";
+import supabase from "../utils/supabase";
 
 // Define the full Post type matching your backend entity
 
@@ -16,16 +17,22 @@ const BlogPostPage: React.FC = () => {
     const fetchPost = async () => {
       try {
         setLoading(true);
-        const response = await fetch(
-          `${
-            import.meta.env.VITE_API_BASE_URL || "http://localhost:3001"
-          }/posts/${slug}`
-        );
-        if (!response.ok) {
-          if (response.status === 404) throw new Error("Post not found.");
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
+        // const response = await fetch(
+        //   `${
+        //     import.meta.env.VITE_API_BASE_URL || "http://localhost:3001"
+        //   }/posts/${slug}`
+        // );
+        // if (!response.ok) {
+        //   if (response.status === 404) throw new Error("Post not found.");
+        //   throw new Error(`HTTP error! status: ${response.status}`);
+        // }
+        // const data = await response.json();
+        const { data: posts } = await supabase
+          .from("posts")
+          .select()
+          .eq("slug", slug);
+        const data = posts[0];
+        console.log(data);
         setPost(data);
       } catch (e: any) {
         setError(e.message);
