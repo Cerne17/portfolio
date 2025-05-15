@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import type { Post } from "../types/Post";
 import { Link as RouterLink } from "react-router-dom"; // For linking to individual posts
+import supabase from "../utils/supabase";
 
 const BlogListPage: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -12,15 +13,17 @@ const BlogListPage: React.FC = () => {
       try {
         setLoading(true);
         // Fetch only published posts for the public blog list
-        const response = await fetch(
-          `${
-            import.meta.env.VITE_API_BASE_URL || "http://localhost:3001"
-          }/posts?published=true`
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
+        // const response = await fetch(
+        //   `${
+        //     import.meta.env.VITE_API_BASE_URL || "http://localhost:3001"
+        //   }/posts?published=true`
+        // );
+        // if (!response.ok) {
+        //   throw new Error(`HTTP error! status: ${response.status}`);
+        // }
+        // const data = await response.json();
+        const { data: posts } = await supabase.from("posts").select();
+        const data = await posts;
         setPosts(data);
       } catch (e: any) {
         setError(e.message);
